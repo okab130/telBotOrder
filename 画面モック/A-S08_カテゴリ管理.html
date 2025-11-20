@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A-S08: カテゴリ管理</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #F5F5F5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: #4CAF50;
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 {
+            font-size: 24px;
+        }
+        .add-btn {
+            padding: 10px 20px;
+            background: white;
+            color: #4CAF50;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .category-list {
+            padding: 20px;
+        }
+        .category-item {
+            background: white;
+            border: 1px solid #E0E0E0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: move;
+        }
+        .category-item:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .drag-handle {
+            font-size: 24px;
+            color: #9E9E9E;
+            cursor: grab;
+        }
+        .drag-handle:active {
+            cursor: grabbing;
+        }
+        .category-info {
+            flex: 1;
+        }
+        .category-name {
+            font-size: 16px;
+            font-weight: bold;
+            color: #212121;
+            margin-bottom: 5px;
+        }
+        .category-order {
+            font-size: 12px;
+            color: #757575;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        .action-btn {
+            padding: 8px 16px;
+            border: 1px solid #E0E0E0;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        .action-btn.edit {
+            background: #FF9800;
+            color: white;
+            border-color: #FF9800;
+        }
+        .action-btn.delete {
+            background: #F44336;
+            color: white;
+            border-color: #F44336;
+        }
+        .help-text {
+            padding: 20px;
+            background: #E3F2FD;
+            color: #1976D2;
+            font-size: 14px;
+            text-align: center;
+            border-top: 1px solid #E0E0E0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🗂️ カテゴリ管理</h1>
+            <button class="add-btn">+ 新規カテゴリ</button>
+        </div>
+        
+        <div class="category-list">
+            <div class="category-item">
+                <div class="drag-handle">☰</div>
+                <div class="category-info">
+                    <div class="category-name">前菜</div>
+                    <div class="category-order">表示順: 1</div>
+                </div>
+                <div class="action-buttons">
+                    <button class="action-btn edit">編集</button>
+                    <button class="action-btn delete">削除</button>
+                </div>
+            </div>
+            
+            <div class="category-item">
+                <div class="drag-handle">☰</div>
+                <div class="category-info">
+                    <div class="category-name">メイン料理</div>
+                    <div class="category-order">表示順: 2</div>
+                </div>
+                <div class="action-buttons">
+                    <button class="action-btn edit">編集</button>
+                    <button class="action-btn delete">削除</button>
+                </div>
+            </div>
+            
+            <div class="category-item">
+                <div class="drag-handle">☰</div>
+                <div class="category-info">
+                    <div class="category-name">デザート</div>
+                    <div class="category-order">表示順: 3</div>
+                </div>
+                <div class="action-buttons">
+                    <button class="action-btn edit">編集</button>
+                    <button class="action-btn delete">削除</button>
+                </div>
+            </div>
+            
+            <div class="category-item">
+                <div class="drag-handle">☰</div>
+                <div class="category-info">
+                    <div class="category-name">ドリンク</div>
+                    <div class="category-order">表示順: 4</div>
+                </div>
+                <div class="action-buttons">
+                    <button class="action-btn edit">編集</button>
+                    <button class="action-btn delete">削除</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="help-text">
+            ℹ️ カテゴリをドラッグ&ドロップで並び替えできます
+        </div>
+    </div>
+</body>
+</html>

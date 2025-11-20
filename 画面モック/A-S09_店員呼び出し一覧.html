@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A-S09: 店員呼び出し一覧</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #F5F5F5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: #4CAF50;
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 {
+            font-size: 24px;
+        }
+        .auto-refresh {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .table-container {
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th {
+            background: #F5F5F5;
+            padding: 15px;
+            text-align: left;
+            font-size: 14px;
+            color: #757575;
+            font-weight: 600;
+            border-bottom: 2px solid #E0E0E0;
+        }
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #E0E0E0;
+            font-size: 14px;
+        }
+        tr:hover {
+            background: #F9F9F9;
+        }
+        .table-number {
+            font-weight: bold;
+            font-size: 16px;
+            color: #212121;
+        }
+        .reason-badge {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .reason-water {
+            background: #E3F2FD;
+            color: #1976D2;
+        }
+        .reason-payment {
+            background: #FFF3E0;
+            color: #F57C00;
+        }
+        .reason-question {
+            background: #F3E5F5;
+            color: #7B1FA2;
+        }
+        .reason-complaint {
+            background: #FFEBEE;
+            color: #C62828;
+        }
+        .reason-other {
+            background: #E0E0E0;
+            color: #757575;
+        }
+        .status-badge {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .status-pending {
+            background: #FFEBEE;
+            color: #C62828;
+        }
+        .status-in-progress {
+            background: #FFF3E0;
+            color: #F57C00;
+        }
+        .status-resolved {
+            background: #E8F5E9;
+            color: #2E7D32;
+        }
+        .action-btn {
+            padding: 6px 12px;
+            border: 1px solid #E0E0E0;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            margin-right: 5px;
+        }
+        .action-btn.primary {
+            background: #4CAF50;
+            color: white;
+            border-color: #4CAF50;
+        }
+        .action-btn.secondary {
+            background: #2196F3;
+            color: white;
+            border-color: #2196F3;
+        }
+        .message-cell {
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔔 店員呼び出し一覧</h1>
+            <div class="auto-refresh">⟳ 自動更新: 5秒</div>
+        </div>
+        
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>テーブル</th>
+                        <th>理由</th>
+                        <th>メッセージ</th>
+                        <th>呼び出し時刻</th>
+                        <th>ステータス</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="table-number">A-1</td>
+                        <td><span class="reason-badge reason-payment">会計</span></td>
+                        <td class="message-cell">-</td>
+                        <td>12:40</td>
+                        <td><span class="status-badge status-pending">未対応</span></td>
+                        <td>
+                            <button class="action-btn primary">対応開始</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-number">B-2</td>
+                        <td><span class="reason-badge reason-water">お水</span></td>
+                        <td class="message-cell">氷なしでお願いします</td>
+                        <td>12:35</td>
+                        <td><span class="status-badge status-in-progress">対応中</span></td>
+                        <td>
+                            <button class="action-btn secondary">完了</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-number">C-3</td>
+                        <td><span class="reason-badge reason-question">質問</span></td>
+                        <td class="message-cell">アレルギー対応について</td>
+                        <td>12:30</td>
+                        <td><span class="status-badge status-resolved">解決済み</span></td>
+                        <td>
+                            <span style="color: #9E9E9E;">完了</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-number">D-1</td>
+                        <td><span class="reason-badge reason-complaint">苦情</span></td>
+                        <td class="message-cell">料理が冷めています</td>
+                        <td>12:25</td>
+                        <td><span class="status-badge status-resolved">解決済み</span></td>
+                        <td>
+                            <span style="color: #9E9E9E;">完了</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

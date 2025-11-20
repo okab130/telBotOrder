@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A-S03: 注文ダッシュボード</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #F5F5F5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: #4CAF50;
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 {
+            font-size: 24px;
+        }
+        .auto-refresh {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .toolbar {
+            padding: 20px 30px;
+            border-bottom: 1px solid #E0E0E0;
+            display: flex;
+            gap: 10px;
+        }
+        .filter-btn {
+            padding: 8px 16px;
+            border: 1px solid #E0E0E0;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .filter-btn.active {
+            background: #4CAF50;
+            color: white;
+            border-color: #4CAF50;
+        }
+        .table-container {
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th {
+            background: #F5F5F5;
+            padding: 15px;
+            text-align: left;
+            font-size: 14px;
+            color: #757575;
+            font-weight: 600;
+            border-bottom: 2px solid #E0E0E0;
+        }
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #E0E0E0;
+            font-size: 14px;
+        }
+        tr:hover {
+            background: #F9F9F9;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .status-pending {
+            background: #E0E0E0;
+            color: #757575;
+        }
+        .status-cooking {
+            background: #FFF3E0;
+            color: #F57C00;
+        }
+        .status-ready {
+            background: #E3F2FD;
+            color: #1976D2;
+        }
+        .action-btn {
+            padding: 6px 12px;
+            border: 1px solid #E0E0E0;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            margin-right: 5px;
+        }
+        .action-btn.primary {
+            background: #4CAF50;
+            color: white;
+            border-color: #4CAF50;
+        }
+        .action-btn.danger {
+            background: #F44336;
+            color: white;
+            border-color: #F44336;
+        }
+        .elapsed-time {
+            color: #757575;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🍳 注文ダッシュボード</h1>
+            <div class="auto-refresh">⟳ 自動更新: 5秒</div>
+        </div>
+        
+        <div class="toolbar">
+            <button class="filter-btn active">すべて</button>
+            <button class="filter-btn">未調理</button>
+            <button class="filter-btn">調理中</button>
+            <button class="filter-btn">調理完了</button>
+        </div>
+        
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>テーブル</th>
+                        <th>注文#</th>
+                        <th>商品</th>
+                        <th>数量</th>
+                        <th>注文時刻</th>
+                        <th>経過時間</th>
+                        <th>ステータス</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>A-1</strong></td>
+                        <td>#3</td>
+                        <td>ハンバーグ定食</td>
+                        <td>2</td>
+                        <td>12:35</td>
+                        <td class="elapsed-time">5分</td>
+                        <td><span class="status-badge status-pending">未調理</span></td>
+                        <td>
+                            <button class="action-btn primary">調理開始</button>
+                            <button class="action-btn danger">キャンセル</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>A-1</strong></td>
+                        <td>#3</td>
+                        <td>カレーライス</td>
+                        <td>1</td>
+                        <td>12:35</td>
+                        <td class="elapsed-time">5分</td>
+                        <td><span class="status-badge status-pending">未調理</span></td>
+                        <td>
+                            <button class="action-btn primary">調理開始</button>
+                            <button class="action-btn danger">キャンセル</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>B-2</strong></td>
+                        <td>#1</td>
+                        <td>ビール</td>
+                        <td>2</td>
+                        <td>12:10</td>
+                        <td class="elapsed-time">30分</td>
+                        <td><span class="status-badge status-cooking">調理中</span></td>
+                        <td>
+                            <button class="action-btn primary">完了</button>
+                            <button class="action-btn danger">キャンセル</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>C-3</strong></td>
+                        <td>#2</td>
+                        <td>ラーメン</td>
+                        <td>1</td>
+                        <td>12:25</td>
+                        <td class="elapsed-time">15分</td>
+                        <td><span class="status-badge status-ready">調理完了</span></td>
+                        <td>
+                            <button class="action-btn primary">提供済み</button>
+                            <button class="action-btn danger">キャンセル</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

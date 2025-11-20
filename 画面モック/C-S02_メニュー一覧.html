@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C-S02: メニュー一覧</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #F5F5F5;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        .phone-frame {
+            width: 375px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 667px;
+        }
+        .header {
+            background: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 {
+            font-size: 18px;
+        }
+        .header-icons {
+            display: flex;
+            gap: 15px;
+        }
+        .icon-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            position: relative;
+        }
+        .cart-badge {
+            position: absolute;
+            top: -5px;
+            right: -8px;
+            background: #FF5722;
+            color: white;
+            border-radius: 10px;
+            padding: 2px 6px;
+            font-size: 10px;
+            font-weight: bold;
+        }
+        .category-tabs {
+            display: flex;
+            overflow-x: auto;
+            background: white;
+            border-bottom: 1px solid #E0E0E0;
+            padding: 0 10px;
+        }
+        .category-tab {
+            padding: 12px 20px;
+            border: none;
+            background: none;
+            color: #757575;
+            font-size: 14px;
+            cursor: pointer;
+            white-space: nowrap;
+            border-bottom: 2px solid transparent;
+        }
+        .category-tab.active {
+            color: #4CAF50;
+            border-bottom-color: #4CAF50;
+            font-weight: bold;
+        }
+        .menu-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px;
+        }
+        .menu-item {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+        .menu-item.sold-out {
+            opacity: 0.5;
+        }
+        .menu-item-image {
+            width: 100%;
+            height: 200px;
+            background: #E0E0E0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .menu-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .sold-out-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #F44336;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .menu-item-info {
+            padding: 15px;
+        }
+        .menu-item-name {
+            font-size: 16px;
+            font-weight: bold;
+            color: #212121;
+            margin-bottom: 5px;
+        }
+        .menu-item-price {
+            font-size: 18px;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        .footer-buttons {
+            background: white;
+            border-top: 1px solid #E0E0E0;
+            padding: 10px;
+            display: flex;
+            gap: 10px;
+        }
+        .footer-btn {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #E0E0E0;
+            background: white;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #212121;
+            cursor: pointer;
+        }
+        .footer-btn:active {
+            background: #F5F5F5;
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-frame">
+        <div class="header">
+            <h1>レストラン太郎</h1>
+            <div class="header-icons">
+                <button class="icon-btn">🔍</button>
+                <button class="icon-btn">
+                    🛒
+                    <span class="cart-badge">2</span>
+                </button>
+            </div>
+        </div>
+        
+        <div class="category-tabs">
+            <button class="category-tab active">前菜</button>
+            <button class="category-tab">メイン</button>
+            <button class="category-tab">デザート</button>
+            <button class="category-tab">ドリンク</button>
+        </div>
+        
+        <div class="menu-list">
+            <div class="menu-item">
+                <div class="menu-item-image">
+                    <div style="color: #9E9E9E; font-size: 48px;">🍽️</div>
+                </div>
+                <div class="menu-item-info">
+                    <div class="menu-item-name">ハンバーグ定食</div>
+                    <div class="menu-item-price">¥1,200</div>
+                </div>
+            </div>
+            
+            <div class="menu-item sold-out">
+                <div class="menu-item-image">
+                    <div style="color: #9E9E9E; font-size: 48px;">🍛</div>
+                    <div class="sold-out-badge">売り切れ</div>
+                </div>
+                <div class="menu-item-info">
+                    <div class="menu-item-name">カレーライス</div>
+                    <div class="menu-item-price">¥900</div>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="menu-item-image">
+                    <div style="color: #9E9E9E; font-size: 48px;">🍜</div>
+                </div>
+                <div class="menu-item-info">
+                    <div class="menu-item-name">ラーメン</div>
+                    <div class="menu-item-price">¥850</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-buttons">
+            <button class="footer-btn">📋 注文履歴</button>
+            <button class="footer-btn">🔔 店員呼出</button>
+            <button class="footer-btn">💳 会計</button>
+        </div>
+    </div>
+</body>
+</html>

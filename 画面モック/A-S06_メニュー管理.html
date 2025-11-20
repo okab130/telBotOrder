@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A-S06: メニュー管理</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #F5F5F5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: #4CAF50;
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 {
+            font-size: 24px;
+        }
+        .add-btn {
+            padding: 10px 20px;
+            background: white;
+            color: #4CAF50;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .toolbar {
+            padding: 20px 30px;
+            border-bottom: 1px solid #E0E0E0;
+            display: flex;
+            gap: 10px;
+        }
+        .filter-btn {
+            padding: 8px 16px;
+            border: 1px solid #E0E0E0;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .filter-btn.active {
+            background: #4CAF50;
+            color: white;
+            border-color: #4CAF50;
+        }
+        .table-container {
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th {
+            background: #F5F5F5;
+            padding: 15px;
+            text-align: left;
+            font-size: 14px;
+            color: #757575;
+            font-weight: 600;
+            border-bottom: 2px solid #E0E0E0;
+        }
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #E0E0E0;
+            font-size: 14px;
+        }
+        tr:hover {
+            background: #F9F9F9;
+        }
+        .item-image {
+            width: 60px;
+            height: 60px;
+            background: #E0E0E0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        .item-name {
+            font-weight: bold;
+            color: #212121;
+        }
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 26px;
+            background: #4CAF50;
+            border-radius: 13px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .toggle-switch.off {
+            background: #E0E0E0;
+        }
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            width: 22px;
+            height: 22px;
+            background: white;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: left 0.3s;
+        }
+        .toggle-switch.off::after {
+            left: 26px;
+        }
+        .action-btn {
+            padding: 6px 12px;
+            border: 1px solid #E0E0E0;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            margin-right: 5px;
+        }
+        .action-btn.edit {
+            background: #FF9800;
+            color: white;
+            border-color: #FF9800;
+        }
+        .action-btn.delete {
+            background: #F44336;
+            color: white;
+            border-color: #F44336;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📝 メニュー管理</h1>
+            <button class="add-btn">+ 新規商品登録</button>
+        </div>
+        
+        <div class="toolbar">
+            <button class="filter-btn active">すべて</button>
+            <button class="filter-btn">前菜</button>
+            <button class="filter-btn">メイン料理</button>
+            <button class="filter-btn">デザート</button>
+            <button class="filter-btn">ドリンク</button>
+        </div>
+        
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>画像</th>
+                        <th>商品名</th>
+                        <th>カテゴリ</th>
+                        <th>価格</th>
+                        <th>最大数量</th>
+                        <th>売り切れ</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><div class="item-image">🍽️</div></td>
+                        <td class="item-name">ハンバーグ定食</td>
+                        <td>メイン料理</td>
+                        <td>¥1,200</td>
+                        <td>10個</td>
+                        <td><div class="toggle-switch"></div></td>
+                        <td>
+                            <button class="action-btn edit">編集</button>
+                            <button class="action-btn delete">削除</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><div class="item-image">🍛</div></td>
+                        <td class="item-name">カレーライス</td>
+                        <td>メイン料理</td>
+                        <td>¥900</td>
+                        <td>10個</td>
+                        <td><div class="toggle-switch off"></div></td>
+                        <td>
+                            <button class="action-btn edit">編集</button>
+                            <button class="action-btn delete">削除</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><div class="item-image">🍜</div></td>
+                        <td class="item-name">ラーメン</td>
+                        <td>メイン料理</td>
+                        <td>¥850</td>
+                        <td>15個</td>
+                        <td><div class="toggle-switch"></div></td>
+                        <td>
+                            <button class="action-btn edit">編集</button>
+                            <button class="action-btn delete">削除</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><div class="item-image">🍺</div></td>
+                        <td class="item-name">ビール</td>
+                        <td>ドリンク</td>
+                        <td>¥500</td>
+                        <td>20個</td>
+                        <td><div class="toggle-switch"></div></td>
+                        <td>
+                            <button class="action-btn edit">編集</button>
+                            <button class="action-btn delete">削除</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

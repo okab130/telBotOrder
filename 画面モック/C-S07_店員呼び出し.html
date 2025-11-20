@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C-S07: 店員呼び出し</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #F5F5F5;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        .phone-frame {
+            width: 375px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 667px;
+        }
+        .header {
+            background: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .back-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .header h1 {
+            font-size: 18px;
+        }
+        .content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #212121;
+            margin-bottom: 15px;
+        }
+        .reason-options {
+            margin-bottom: 30px;
+        }
+        .reason-option {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid #E0E0E0;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .reason-option:hover {
+            background: #F5F5F5;
+        }
+        .reason-option.selected {
+            border-color: #4CAF50;
+            background: #E8F5E9;
+        }
+        .reason-option input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+            accent-color: #4CAF50;
+        }
+        .reason-icon {
+            font-size: 24px;
+            margin-right: 12px;
+        }
+        .reason-text {
+            font-size: 14px;
+            color: #212121;
+        }
+        .message-section {
+            margin-bottom: 30px;
+        }
+        .message-label {
+            font-size: 14px;
+            color: #212121;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .message-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #E0E0E0;
+            border-radius: 8px;
+            font-size: 14px;
+            resize: vertical;
+            min-height: 100px;
+            font-family: inherit;
+        }
+        .message-input:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+        .call-btn {
+            width: 100%;
+            height: 56px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .call-btn:disabled {
+            background: #E0E0E0;
+            color: #9E9E9E;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-frame">
+        <div class="header">
+            <button class="back-btn">←</button>
+            <h1>店員呼び出し</h1>
+        </div>
+        
+        <div class="content">
+            <div class="section-title">呼び出し理由を選択してください</div>
+            
+            <div class="reason-options">
+                <label class="reason-option selected">
+                    <input type="radio" name="reason" value="water" checked>
+                    <span class="reason-icon">💧</span>
+                    <span class="reason-text">お水が欲しい</span>
+                </label>
+                
+                <label class="reason-option">
+                    <input type="radio" name="reason" value="payment">
+                    <span class="reason-icon">💳</span>
+                    <span class="reason-text">会計したい</span>
+                </label>
+                
+                <label class="reason-option">
+                    <input type="radio" name="reason" value="question">
+                    <span class="reason-icon">❓</span>
+                    <span class="reason-text">質問がある</span>
+                </label>
+                
+                <label class="reason-option">
+                    <input type="radio" name="reason" value="complaint">
+                    <span class="reason-icon">⚠️</span>
+                    <span class="reason-text">苦情・問題</span>
+                </label>
+                
+                <label class="reason-option">
+                    <input type="radio" name="reason" value="other">
+                    <span class="reason-icon">📝</span>
+                    <span class="reason-text">その他</span>
+                </label>
+            </div>
+            
+            <div class="message-section">
+                <label class="message-label">メッセージ（任意）</label>
+                <textarea class="message-input" placeholder="詳細をご記入ください"></textarea>
+            </div>
+            
+            <button class="call-btn">呼び出す</button>
+        </div>
+    </div>
+</body>
+</html>

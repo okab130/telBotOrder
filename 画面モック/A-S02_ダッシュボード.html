@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A-S02: ダッシュボード</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #F5F5F5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .header {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px 30px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 {
+            font-size: 24px;
+            color: #212121;
+        }
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: #4CAF50;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        .logout-btn {
+            padding: 8px 16px;
+            border: 1px solid #E0E0E0;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 25px;
+            transition: transform 0.2s;
+        }
+        .stat-card:hover {
+            transform: translateY(-4px);
+        }
+        .stat-icon {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        .stat-label {
+            font-size: 14px;
+            color: #757575;
+            margin-bottom: 5px;
+        }
+        .stat-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #212121;
+        }
+        .stat-card.primary .stat-value {
+            color: #4CAF50;
+        }
+        .stat-card.warning .stat-value {
+            color: #FF9800;
+        }
+        .stat-card.danger .stat-value {
+            color: #F44336;
+        }
+        .quick-actions {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+        .quick-actions h2 {
+            font-size: 20px;
+            color: #212121;
+            margin-bottom: 20px;
+        }
+        .action-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .action-btn {
+            padding: 20px;
+            border: 1px solid #E0E0E0;
+            background: white;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+        .action-btn:hover {
+            border-color: #4CAF50;
+            background: #F1F8F4;
+        }
+        .action-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        .action-text {
+            font-size: 14px;
+            color: #212121;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 ダッシュボード</h1>
+            <div class="user-info">
+                <div class="user-avatar">A</div>
+                <span>admin</span>
+                <button class="logout-btn">ログアウト</button>
+            </div>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-card primary">
+                <div class="stat-icon">👥</div>
+                <div class="stat-label">アクティブセッション</div>
+                <div class="stat-value">5</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">📋</div>
+                <div class="stat-label">本日の注文件数</div>
+                <div class="stat-value">32</div>
+            </div>
+            
+            <div class="stat-card primary">
+                <div class="stat-icon">💰</div>
+                <div class="stat-label">本日の売上</div>
+                <div class="stat-value">¥45,000</div>
+            </div>
+            
+            <div class="stat-card warning">
+                <div class="stat-icon">⏰</div>
+                <div class="stat-label">調理待ち</div>
+                <div class="stat-value">3</div>
+            </div>
+            
+            <div class="stat-card danger">
+                <div class="stat-icon">🔔</div>
+                <div class="stat-label">店員呼び出し（未対応）</div>
+                <div class="stat-value">2</div>
+            </div>
+        </div>
+        
+        <div class="quick-actions">
+            <h2>クイックアクセス</h2>
+            <div class="action-grid">
+                <button class="action-btn">
+                    <div class="action-icon">🍳</div>
+                    <div class="action-text">注文ダッシュボード</div>
+                </button>
+                
+                <button class="action-btn">
+                    <div class="action-icon">📝</div>
+                    <div class="action-text">メニュー管理</div>
+                </button>
+                
+                <button class="action-btn">
+                    <div class="action-icon">🪑</div>
+                    <div class="action-text">テーブル管理</div>
+                </button>
+                
+                <button class="action-btn">
+                    <div class="action-icon">💳</div>
+                    <div class="action-text">セッション管理</div>
+                </button>
+                
+                <button class="action-btn">
+                    <div class="action-icon">📊</div>
+                    <div class="action-text">売上管理</div>
+                </button>
+                
+                <button class="action-btn">
+                    <div class="action-icon">🔔</div>
+                    <div class="action-text">店員呼び出し一覧</div>
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

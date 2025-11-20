@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A-S10: セッション管理</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #F5F5F5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: #4CAF50;
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 {
+            font-size: 24px;
+        }
+        .auto-refresh {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .table-container {
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th {
+            background: #F5F5F5;
+            padding: 15px;
+            text-align: left;
+            font-size: 14px;
+            color: #757575;
+            font-weight: 600;
+            border-bottom: 2px solid #E0E0E0;
+        }
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #E0E0E0;
+            font-size: 14px;
+        }
+        tr:hover {
+            background: #F9F9F9;
+        }
+        .table-number {
+            font-weight: bold;
+            font-size: 16px;
+            color: #212121;
+        }
+        .status-badge {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .status-active {
+            background: #E8F5E9;
+            color: #2E7D32;
+        }
+        .status-payment {
+            background: #FFF3E0;
+            color: #F57C00;
+        }
+        .action-btn {
+            padding: 6px 12px;
+            border: 1px solid #E0E0E0;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            margin-right: 5px;
+        }
+        .action-btn.primary {
+            background: #4CAF50;
+            color: white;
+            border-color: #4CAF50;
+        }
+        .action-btn.danger {
+            background: #F44336;
+            color: white;
+            border-color: #F44336;
+        }
+        .total-amount {
+            font-weight: bold;
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💳 セッション管理</h1>
+            <div class="auto-refresh">⟳ 自動更新: 10秒</div>
+        </div>
+        
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>テーブル</th>
+                        <th>開始時刻</th>
+                        <th>経過時間</th>
+                        <th>来店人数</th>
+                        <th>注文数</th>
+                        <th>合計金額</th>
+                        <th>ステータス</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="table-number">A-1</td>
+                        <td>12:30</td>
+                        <td>1時間10分</td>
+                        <td>4人</td>
+                        <td>3件</td>
+                        <td class="total-amount">¥4,300</td>
+                        <td><span class="status-badge status-payment">会計依頼中</span></td>
+                        <td>
+                            <button class="action-btn primary">会計処理</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-number">B-2</td>
+                        <td>12:10</td>
+                        <td>1時間30分</td>
+                        <td>2人</td>
+                        <td>1件</td>
+                        <td class="total-amount">¥1,000</td>
+                        <td><span class="status-badge status-active">来店中</span></td>
+                        <td>
+                            <button class="action-btn danger">強制終了</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-number">C-3</td>
+                        <td>13:00</td>
+                        <td>40分</td>
+                        <td>3人</td>
+                        <td>2件</td>
+                        <td class="total-amount">¥3,600</td>
+                        <td><span class="status-badge status-active">来店中</span></td>
+                        <td>
+                            <button class="action-btn danger">強制終了</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-number">D-1</td>
+                        <td>13:15</td>
+                        <td>25分</td>
+                        <td>5人</td>
+                        <td>4件</td>
+                        <td class="total-amount">¥6,500</td>
+                        <td><span class="status-badge status-active">来店中</span></td>
+                        <td>
+                            <button class="action-btn danger">強制終了</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

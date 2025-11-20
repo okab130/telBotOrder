@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C-S03: 商品詳細</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #F5F5F5;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        .phone-frame {
+            width: 375px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 667px;
+        }
+        .header {
+            background: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .back-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .cart-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .product-image {
+            width: 100%;
+            height: 280px;
+            background: #E0E0E0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .product-info {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        .product-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #212121;
+            margin-bottom: 10px;
+        }
+        .product-price {
+            font-size: 28px;
+            color: #4CAF50;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .product-description {
+            font-size: 14px;
+            color: #757575;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        .quantity-control {
+            margin-bottom: 20px;
+        }
+        .quantity-label {
+            font-size: 14px;
+            color: #212121;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .quantity-buttons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .qty-btn {
+            width: 44px;
+            height: 44px;
+            border: 2px solid #4CAF50;
+            background: white;
+            border-radius: 8px;
+            font-size: 24px;
+            color: #4CAF50;
+            cursor: pointer;
+        }
+        .qty-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #212121;
+            min-width: 50px;
+            text-align: center;
+        }
+        .note-section {
+            margin-bottom: 20px;
+        }
+        .note-label {
+            font-size: 14px;
+            color: #212121;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .note-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #E0E0E0;
+            border-radius: 8px;
+            font-size: 14px;
+            resize: vertical;
+            min-height: 80px;
+        }
+        .add-to-cart-btn {
+            position: sticky;
+            bottom: 0;
+            width: 100%;
+            height: 56px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-frame">
+        <div class="header">
+            <button class="back-btn">←</button>
+            <button class="cart-btn">🛒</button>
+        </div>
+        
+        <div class="product-image">
+            <div style="color: #9E9E9E; font-size: 80px;">🍽️</div>
+        </div>
+        
+        <div class="product-info">
+            <div class="product-name">ハンバーグ定食</div>
+            <div class="product-price">¥1,200</div>
+            <div class="product-description">
+                ジューシーなハンバーグに特製デミグラスソースをかけた人気メニューです。ライス、サラダ、スープ付き。
+            </div>
+            
+            <div class="quantity-control">
+                <label class="quantity-label">数量:</label>
+                <div class="quantity-buttons">
+                    <button class="qty-btn">−</button>
+                    <span class="qty-value">2</span>
+                    <button class="qty-btn">+</button>
+                </div>
+            </div>
+            
+            <div class="note-section">
+                <label class="note-label">備考（アレルギー等）</label>
+                <textarea class="note-input" placeholder="例：ソース少なめ、アレルギー対応"></textarea>
+            </div>
+        </div>
+        
+        <button class="add-to-cart-btn">カートに追加 (¥2,400)</button>
+    </div>
+</body>
+</html>

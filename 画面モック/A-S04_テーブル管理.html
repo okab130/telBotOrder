@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A-S04: テーブル管理</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #F5F5F5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: #4CAF50;
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 {
+            font-size: 24px;
+        }
+        .add-btn {
+            padding: 10px 20px;
+            background: white;
+            color: #4CAF50;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .table-container {
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th {
+            background: #F5F5F5;
+            padding: 15px;
+            text-align: left;
+            font-size: 14px;
+            color: #757575;
+            font-weight: 600;
+            border-bottom: 2px solid #E0E0E0;
+        }
+        td {
+            padding: 20px 15px;
+            border-bottom: 1px solid #E0E0E0;
+            font-size: 14px;
+        }
+        tr:hover {
+            background: #F9F9F9;
+        }
+        .table-number {
+            font-weight: bold;
+            font-size: 16px;
+            color: #212121;
+        }
+        .qr-btn {
+            padding: 6px 12px;
+            border: 1px solid #E0E0E0;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            margin-right: 5px;
+        }
+        .qr-btn.primary {
+            background: #2196F3;
+            color: white;
+            border-color: #2196F3;
+        }
+        .action-btn {
+            padding: 6px 12px;
+            border: 1px solid #E0E0E0;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            margin-right: 5px;
+        }
+        .action-btn.edit {
+            background: #FF9800;
+            color: white;
+            border-color: #FF9800;
+        }
+        .action-btn.delete {
+            background: #F44336;
+            color: white;
+            border-color: #F44336;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .modal.show {
+            display: flex;
+        }
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 400px;
+            text-align: center;
+        }
+        .qr-code {
+            width: 250px;
+            height: 250px;
+            background: #E0E0E0;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+        }
+        .modal-close {
+            margin-top: 20px;
+            padding: 10px 30px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🪑 テーブル管理</h1>
+            <button class="add-btn">+ 新規登録</button>
+        </div>
+        
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>テーブル番号</th>
+                        <th>定員</th>
+                        <th>QRコード</th>
+                        <th>利用状態</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="table-number">A-1</td>
+                        <td>4人</td>
+                        <td>
+                            <button class="qr-btn primary">QR表示</button>
+                            <button class="qr-btn">ダウンロード</button>
+                        </td>
+                        <td><span style="color: #4CAF50;">✓ 利用可能</span></td>
+                        <td>
+                            <button class="action-btn edit">編集</button>
+                            <button class="action-btn delete">削除</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-number">A-2</td>
+                        <td>2人</td>
+                        <td>
+                            <button class="qr-btn primary">QR表示</button>
+                            <button class="qr-btn">ダウンロード</button>
+                        </td>
+                        <td><span style="color: #FF9800;">⏰ 使用中</span></td>
+                        <td>
+                            <button class="action-btn edit">編集</button>
+                            <button class="action-btn delete">削除</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-number">B-1</td>
+                        <td>6人</td>
+                        <td>
+                            <button class="qr-btn primary">QR表示</button>
+                            <button class="qr-btn">ダウンロード</button>
+                        </td>
+                        <td><span style="color: #4CAF50;">✓ 利用可能</span></td>
+                        <td>
+                            <button class="action-btn edit">編集</button>
+                            <button class="action-btn delete">削除</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-number">B-2</td>
+                        <td>4人</td>
+                        <td>
+                            <button class="qr-btn primary">QR表示</button>
+                            <button class="qr-btn">ダウンロード</button>
+                        </td>
+                        <td><span style="color: #4CAF50;">✓ 利用可能</span></td>
+                        <td>
+                            <button class="action-btn edit">編集</button>
+                            <button class="action-btn delete">削除</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <!-- QRコード表示モーダル -->
+    <div class="modal">
+        <div class="modal-content">
+            <h2>テーブル A-1 QRコード</h2>
+            <div class="qr-code">
+                <div style="font-size: 48px;">📱</div>
+            </div>
+            <p>スマートフォンでスキャンしてください</p>
+            <button class="modal-close">閉じる</button>
+        </div>
+    </div>
+</body>
+</html>

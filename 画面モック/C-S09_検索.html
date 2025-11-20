@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C-S09: 検索</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #F5F5F5;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        .phone-frame {
+            width: 375px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 667px;
+        }
+        .header {
+            background: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .back-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .search-container {
+            flex: 1;
+            display: flex;
+            gap: 10px;
+        }
+        .search-input {
+            flex: 1;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .search-btn {
+            background: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #4CAF50;
+            cursor: pointer;
+        }
+        .result-info {
+            padding: 15px 20px;
+            background: #F5F5F5;
+            border-bottom: 1px solid #E0E0E0;
+            font-size: 14px;
+            color: #757575;
+        }
+        .result-count {
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        .menu-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px;
+        }
+        .menu-item {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+        .menu-item-image {
+            width: 100%;
+            height: 180px;
+            background: #E0E0E0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .menu-item-info {
+            padding: 15px;
+        }
+        .menu-item-name {
+            font-size: 16px;
+            font-weight: bold;
+            color: #212121;
+            margin-bottom: 5px;
+        }
+        .highlight {
+            background: #FFEB3B;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        .menu-item-price {
+            font-size: 18px;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        .empty-state {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .empty-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+        .empty-text {
+            font-size: 16px;
+            color: #757575;
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-frame">
+        <div class="header">
+            <button class="back-btn">←</button>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="商品名で検索" value="ハンバーグ">
+                <button class="search-btn">検索</button>
+            </div>
+        </div>
+        
+        <div class="result-info">
+            検索結果: <span class="result-count">3</span>件
+        </div>
+        
+        <div class="menu-list">
+            <div class="menu-item">
+                <div class="menu-item-image">
+                    <div style="color: #9E9E9E; font-size: 48px;">🍽️</div>
+                </div>
+                <div class="menu-item-info">
+                    <div class="menu-item-name"><span class="highlight">ハンバーグ</span>定食</div>
+                    <div class="menu-item-price">¥1,200</div>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="menu-item-image">
+                    <div style="color: #9E9E9E; font-size: 48px;">🍔</div>
+                </div>
+                <div class="menu-item-info">
+                    <div class="menu-item-name">チーズ<span class="highlight">ハンバーグ</span></div>
+                    <div class="menu-item-price">¥1,400</div>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="menu-item-image">
+                    <div style="color: #9E9E9E; font-size: 48px;">🍖</div>
+                </div>
+                <div class="menu-item-info">
+                    <div class="menu-item-name">煮込み<span class="highlight">ハンバーグ</span></div>
+                    <div class="menu-item-price">¥1,500</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 検索結果が0件の場合の表示例 -->
+        <!--
+        <div class="empty-state">
+            <div class="empty-icon">🔍</div>
+            <div class="empty-text">該当する商品が見つかりませんでした</div>
+        </div>
+        -->
+    </div>
+</body>
+</html>

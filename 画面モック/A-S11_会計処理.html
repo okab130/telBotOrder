@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A-S11: 会計処理</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #F5F5F5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: #4CAF50;
+            color: white;
+            padding: 20px 30px;
+        }
+        .header h1 {
+            font-size: 24px;
+        }
+        .session-info {
+            padding: 25px 30px;
+            background: #F5F5F5;
+            border-bottom: 1px solid #E0E0E0;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .info-label {
+            font-size: 12px;
+            color: #757575;
+            margin-bottom: 5px;
+        }
+        .info-value {
+            font-size: 16px;
+            font-weight: bold;
+            color: #212121;
+        }
+        .order-details {
+            padding: 30px;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #212121;
+            margin-bottom: 20px;
+        }
+        .order-list {
+            margin-bottom: 25px;
+        }
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #F5F5F5;
+        }
+        .order-item:last-child {
+            border-bottom: none;
+        }
+        .item-info {
+            flex: 1;
+        }
+        .item-name {
+            font-size: 14px;
+            color: #212121;
+            margin-bottom: 3px;
+        }
+        .item-order-number {
+            font-size: 12px;
+            color: #9E9E9E;
+        }
+        .item-price {
+            font-size: 14px;
+            color: #757575;
+        }
+        .total-section {
+            background: #F5F5F5;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 24px;
+            font-weight: bold;
+            color: #212121;
+        }
+        .total-amount {
+            color: #4CAF50;
+        }
+        .print-section {
+            margin-bottom: 25px;
+        }
+        .print-btn {
+            width: 100%;
+            padding: 14px;
+            background: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        .payment-method {
+            margin-bottom: 25px;
+        }
+        .method-options {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .method-option {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #E0E0E0;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .method-option:hover {
+            border-color: #4CAF50;
+        }
+        .method-option.selected {
+            border-color: #4CAF50;
+            background: #E8F5E9;
+        }
+        .method-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+        .method-text {
+            font-size: 14px;
+            color: #212121;
+            font-weight: 600;
+        }
+        .complete-btn {
+            width: 100%;
+            padding: 16px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💳 会計処理</h1>
+        </div>
+        
+        <div class="session-info">
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label">テーブル</div>
+                    <div class="info-value">A-1</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">来店人数</div>
+                    <div class="info-value">4人</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">開始時刻</div>
+                    <div class="info-value">12:30</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="order-details">
+            <div class="section-title">注文明細</div>
+            <div class="order-list">
+                <div class="order-item">
+                    <div class="item-info">
+                        <div class="item-name">ハンバーグ定食 × 2</div>
+                        <div class="item-order-number">注文 #3</div>
+                    </div>
+                    <div class="item-price">¥2,400</div>
+                </div>
+                <div class="order-item">
+                    <div class="item-info">
+                        <div class="item-name">カレーライス × 1</div>
+                        <div class="item-order-number">注文 #3</div>
+                    </div>
+                    <div class="item-price">¥900</div>
+                </div>
+                <div class="order-item">
+                    <div class="item-info">
+                        <div class="item-name">ビール × 2</div>
+                        <div class="item-order-number">注文 #1</div>
+                    </div>
+                    <div class="item-price">¥1,000</div>
+                </div>
+            </div>
+            
+            <div class="total-section">
+                <div class="total-row">
+                    <span>合計</span>
+                    <span class="total-amount">¥4,300</span>
+                </div>
+            </div>
+            
+            <div class="print-section">
+                <button class="print-btn">🖨️ レシート印刷</button>
+            </div>
+            
+            <div class="payment-method">
+                <div class="section-title">支払い方法</div>
+                <div class="method-options">
+                    <div class="method-option selected">
+                        <div class="method-icon">💵</div>
+                        <div class="method-text">現金</div>
+                    </div>
+                    <div class="method-option">
+                        <div class="method-icon">💳</div>
+                        <div class="method-text">クレジット</div>
+                    </div>
+                    <div class="method-option">
+                        <div class="method-icon">📱</div>
+                        <div class="method-text">電子マネー</div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="complete-btn">会計完了</button>
+        </div>
+    </div>
+</body>
+</html>
