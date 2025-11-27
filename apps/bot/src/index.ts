@@ -23,7 +23,7 @@ bot.command('start', async (ctx) => {
     .text('ℹ️ 使い方', 'help');
 
   await ctx.reply(
-    `🍽️ ようこそ、___BEGIN___COMMAND_DONE_MARKER___$LASTEXITCODE{userName}さん！\n\nテーブルのQRコードをスキャンして、\n簡単にモバイルオーダーが始められます。`,
+    `🍽️ ようこそ、${userName}さん！\n\nテーブルのQRコードをスキャンして、\n簡単にモバイルオーダーが始められます。`,
     { reply_markup: keyboard }
   );
 });
@@ -39,7 +39,7 @@ bot.catch((err) => {
 
 bot.start({
   onStart: (botInfo) => {
-    console.log(`✅ Bot started: @___BEGIN___COMMAND_DONE_MARKER___$LASTEXITCODE{botInfo.username}`);
+    console.log(`✅ Bot started: @${botInfo.username}`);
   }
 });
 
